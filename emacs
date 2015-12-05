@@ -52,7 +52,10 @@
  rich-minority
  :init
  (setq rm-blacklist (mapconcat 'identity
-                               (quote (" HI" " company" " Projectile\.\*"))
+                               (quote (" HI"
+                                       " company"
+                                       " Paredit"
+                                       " Projectile\.\*"))
                                "\\|")))
 
 (use-package
@@ -94,5 +97,10 @@
  :init
  (add-hook 'alchemist-mode-hook
            (lambda () (setq show-trailing-whitespace t))))
+
+(use-package
+  paredit
+  :init
+  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
 
 (use-package magit)
