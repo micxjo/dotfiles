@@ -101,6 +101,14 @@
 (use-package
   paredit
   :init
-  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
+  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+  (add-hook 'scheme-mode-hook #'enable-paredit-mode))
+
+(use-package
+  geiser
+  :init
+  (let ((mac-racket-path "/Applications/Racket v6.3/bin/racket"))
+    (if (file-exists-p mac-racket-path)
+        (setq geiser-racket-binary mac-racket-path))))
 
 (use-package magit)
