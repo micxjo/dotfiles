@@ -20,8 +20,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
-     default))))
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+ '(erc-modules
+   (quote
+    (autojoin button completion fill irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring scrolltobottom services stamp track))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -123,3 +125,36 @@
         (setq geiser-racket-binary mac-racket-path))))
 
 (use-package magit)
+
+;; Keep NickServ passwords out of dotfiles repo
+(load "~/.ercpass")
+
+(erc-services-mode 1)
+(setq erc-prompt-for-nickserv-password nil)
+
+(setq whitespace-global-modes '(not erc-mode))
+(setq erc-keywords '("micxjo"))
+(erc-match-mode)
+
+(setq erc-log-insert-log-on-open nil
+      erc-log-channels t
+      erc-log-channels-directory "~/.irclogs/"
+      erc-save-buffer-on-part t
+      erc-hide-timestamps nil)
+
+(setq erc-max-buffer-size 20000)
+(defvar erc-insert-post-hook)
+(add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
+(setq erc-truncate-buffer-on-save t)
+
+(erc-scrolltobottom-mode)
+(setq erc-input-line-position -2)
+(add-hook 'erc-insert-post-hook 'erc-scroll-to-bottom)
+
+(defun start-irc ()
+  "Connect to IRC"
+  (interactive)
+  (erc-tls :server "irc.freenode.net"
+           :port 6697
+           :nick "micxjo"
+           :full-name "micxjo"))
