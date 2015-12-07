@@ -1,0 +1,26 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+accounts = fastmail
+maxsyncaccounts = 1
+
+[Account fastmail]
+localrepository = fastmail-local
+remoterepository = fastmail-remote
+status_backend = sqlite
+autorefresh = 5
+quick = 10
+
+[Repository fastmail-local]
+type = Maildir
+localfolders = ~/Maildir
+
+[Repository fastmail-remote]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteuser = micxjo@fastmail.com
+ssl = yes
+sslcacertfile = ~/.digicert.crt
+keepalive = 60
+holdconnectionopen = yes
