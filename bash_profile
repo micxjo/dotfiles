@@ -5,3 +5,5 @@ fi
 if [[ -a $HOME/.local/bin ]]; then
     export PATH=$HOME/.local/bin:$PATH
 fi
+
+alias ls="ls -G"
