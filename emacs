@@ -151,6 +151,8 @@
 (setq erc-input-line-position -2)
 (add-hook 'erc-insert-post-hook 'erc-scroll-to-bottom)
 
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
 (defun start-irc ()
   "Connect to IRC"
   (interactive)
