@@ -127,7 +127,8 @@
 (use-package magit)
 
 ;; Keep NickServ passwords out of dotfiles repo
-(load "~/.ercpass")
+(when (file-exists-p "~/.ercpass")
+  (load "~/.ercpass"))
 
 (erc-services-mode 1)
 (setq erc-prompt-for-nickserv-password nil)
@@ -169,3 +170,10 @@
                   (directory "~/Maildir")
                   (directory-files nnheader-directory-files-safe)
                   (get-new-mail nil)))
+
+(use-package
+  elfeed
+  :init
+  (global-set-key (kbd "C-x w") 'elfeed)
+  (when (file-exists-p "~/.elfeeds")
+    (load "~/.elfeeds")))
