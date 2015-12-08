@@ -158,3 +158,12 @@
            :port 6697
            :nick "micxjo"
            :full-name "micxjo"))
+
+(setq user-email-address "micxjo@fastmail.com"
+      user-full-name "Micxjo Funkcio")
+
+(setq gnus-select-method
+      '(nnmaildir "fastmail"
+                  (directory "~/Maildir")
+                  (directory-files nnheader-directory-files-safe)
+                  (get-new-mail nil)))
