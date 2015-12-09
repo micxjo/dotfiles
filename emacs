@@ -124,6 +124,12 @@
     (if (file-exists-p mac-racket-path)
         (setq geiser-racket-binary mac-racket-path))))
 
+(use-package
+  go-mode
+  :init
+  (add-hook 'go-mode-hook
+            (lambda () (setq show-trailing-whitespace t))))
+
 (use-package magit)
 
 ;; Keep NickServ passwords out of dotfiles repo
