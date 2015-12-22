@@ -3,3 +3,5 @@
 	email = micxjo@fastmail.com
 [core]
 	editor = vim
+[gpg]
+	program = gpg2
