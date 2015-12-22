@@ -47,7 +47,7 @@
   (when (file-exists-p local-path)
     (setenv "PATH" (concat local-path ":" (getenv "PATH")))
     (add-to-list 'exec-path local-path)))
-(let ((homebrew-path (expand-file-name "~/homebrew/bin")))
+(let ((homebrew-path (expand-file-name "~/.nix-profile/bin")))
   (when (file-exists-p homebrew-path)
     (setenv "PATH" (concat homebrew-path ":" (getenv "PATH")))
     (add-to-list 'exec-path homebrew-path)))
