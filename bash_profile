@@ -2,8 +2,8 @@ if [[ -a $HOME/.local/bin ]]; then
     export PATH=$HOME/.local/bin:$PATH
 fi
 
-if [[ -a $HOME/.multirust/toolchains/stable/cargo/bin ]]; then
-   export PATH=$HOME/.multirust/toolchains/stable/cargo/bin:$PATH
+if [[ -a $HOME/.multirust/bin ]]; then
+    export PATH=$HOME/.multirust/bin:$PATH
 fi
 
 if [[ -a /Applications/CoqIDE_8.4pl5.app/Contents/Resources/bin ]]; then
