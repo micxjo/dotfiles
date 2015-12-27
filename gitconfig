@@ -5,3 +5,5 @@
 	editor = vim
 [gpg]
 	program = gpg2
+[credential]
+	helper = store
