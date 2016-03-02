@@ -3,17 +3,17 @@ if [[ -a $HOME/.local/bin ]]; then
 fi
 
 if [[ -a $HOME/.multirust/bin ]]; then
-    export PATH=$HOME/.multirust/bin:$PATH
+    export PATH=$HOME/.multirust/bin:$HOME/.multirust/cargo/bin:$PATH
 fi
 
 if [[ -a /Applications/CoqIDE_8.4pl5.app/Contents/Resources/bin ]]; then
     export PATH=/Applications/CoqIDE_8.4pl5.app/Contents/Resources/bin:$PATH
 fi
 
-if [[ -a $HOME/.nix-profile/ ]]; then
-    export OPENSSL_INCLUDE_DIR=$HOME/.nix-profile/include
-    export OPENSSL_LIB_DIR=$HOME/.nix-profile/lib
-    export OPENSSL_ROOT_DIR=$HOME/.nix-profile
+if [[ -a /usr/local/Cellar/openssl/1.0.2g ]]; then
+    export OPENSSL_ROOT_DIR=/usr/local/Cellar/openssl/1.0.2g
+    export OPENSSL_INCLUDE_DIR=$OPENSSL_ROOT_DIR/include
+    export OPENSSL_LIB_DIR=$OPENSSL_ROOT_DIR/lib
 fi
 
 if [[ -a $HOME/gopath ]]; then
@@ -21,9 +21,8 @@ if [[ -a $HOME/gopath ]]; then
     export PATH=$GOPATH/bin:$PATH
 fi
 
-alias ls="ls -G"
-
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
-    . $HOME/.nix-profile/etc/profile.d/nix.sh
+if [[ -a /Applications/Postgres.app/Contents/Versions/9.4/bin ]]; then
+    export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
 fi
 
+alias ls="ls -G"
