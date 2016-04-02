@@ -21,9 +21,6 @@
  '(custom-safe-themes
    (quote
     ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
- '(erc-modules
-   (quote
-    (autojoin button completion fill irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring scrolltobottom services stamp track)))
  '(proof-electric-terminator-enable t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -92,7 +89,9 @@
       (define-key haskell-mode-map (kbd "C-c C-l")
         'haskell-process-load-or-reload)
       (define-key haskell-mode-map (kbd "SPC")
-        'haskell-mode-contextual-space))))
+        'haskell-mode-contextual-space)
+      (define-key haskell-mode-map (kbd "s-b")
+        'haskell-mode-jump-to-def))))
 
 (use-package
   hindent
@@ -176,54 +175,7 @@
 
 (use-package magit)
 
-;; Keep NickServ passwords out of dotfiles repo
-(when (file-exists-p "~/.ercpass")
-  (load "~/.ercpass"))
-
-(erc-services-mode 1)
-(setq erc-prompt-for-nickserv-password nil)
-
-(setq whitespace-global-modes '(not erc-mode))
-(setq erc-keywords '("micxjo"))
-(erc-match-mode)
-
-(setq erc-log-insert-log-on-open nil
-      erc-log-channels t
-      erc-log-channels-directory "~/.irclogs/"
-      erc-save-buffer-on-part t
-      erc-hide-timestamps nil)
-
-(setq erc-max-buffer-size 20000)
-(defvar erc-insert-post-hook)
-(add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
-(setq erc-truncate-buffer-on-save t)
-
-(erc-scrolltobottom-mode)
-(setq erc-input-line-position -2)
-(add-hook 'erc-insert-post-hook 'erc-scroll-to-bottom)
-
-(setq erc-hide-list '("JOIN" "PART" "QUIT"))
-
-(defun start-irc ()
-  "Connect to IRC"
-  (interactive)
-  (erc-tls :server "irc.freenode.net"
-           :port 6697
-           :nick "micxjo"
-           :full-name "micxjo"))
-
 (setq user-email-address "micxjo@fastmail.com"
       user-full-name "Micxjo Funkcio")
 
-(setq gnus-select-method
-      '(nnmaildir "fastmail"
-                  (directory "~/Maildir")
-                  (directory-files nnheader-directory-files-safe)
-                  (get-new-mail nil)))
-
-(use-package
-  elfeed
-  :init
-  (global-set-key (kbd "C-x w") 'elfeed)
-  (when (file-exists-p "~/.elfeeds")
-    (load "~/.elfeeds")))
+(setq require-final-newline t)
