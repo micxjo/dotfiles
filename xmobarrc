@@ -1,0 +1,35 @@
+Config { font = "xft:Bitstream Vera Sans Mono:size=16;bold:antialias=true"
+       , bgColor = "black"
+       , fgColor = "#646464"
+       , position = Top
+       , border = BottomB
+       , borderColor = "#646464"
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %memory% %multicpu% %date%"
+       , lowerOnStart = False
+       , hideOnStart = False
+       , allDesktops = True
+       , pickBroadest = False
+       , persistent = True
+       , commands = [ Run StdinReader
+
+                    , Run Memory [ "--template", "Mem: <usedratio>%"
+                                 , "--Low", "20"
+                                 , "--High", "90"
+                                 , "--low", "darkgreen"
+                                 , "--normal", "darkorange"
+                                 , "--high", "darkred"
+                                 ] 10
+
+                    , Run MultiCpu [ "--template", "Cpu: <autototal>%"
+                                   , "--Low", "50"
+                                   , "--High", "85"
+                                   , "--low", "darkgreen"
+                                   , "--normal", "darkorange"
+                                   , "--high", "darkred"
+                                   ] 10
+
+                    , Run Date "<fc=#ABABAB>%a %b %d %r</fc>" "date" 10
+                    ]
+       }
