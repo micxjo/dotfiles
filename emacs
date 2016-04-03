@@ -88,8 +88,6 @@
       (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
       (define-key haskell-mode-map (kbd "C-c C-l")
         'haskell-process-load-or-reload)
-      (define-key haskell-mode-map (kbd "SPC")
-        'haskell-mode-contextual-space)
       (define-key haskell-mode-map (kbd "s-b")
         'haskell-mode-jump-to-def))))
 
@@ -172,6 +170,8 @@
   :init
   (add-hook 'go-mode-hook
             (lambda () (setq show-trailing-whitespace t))))
+
+(use-package nix-mode)
 
 (use-package magit)
 
