@@ -173,6 +173,8 @@
   (add-hook 'go-mode-hook
             (lambda () (setq show-trailing-whitespace t))))
 
+(use-package idris-mode)
+
 (use-package magit)
 
 (setq user-email-address "micxjo@fastmail.com"
