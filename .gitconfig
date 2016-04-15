@@ -1,9 +1,12 @@
 [user]
 	name = Micxjo Funkcio
 	email = micxjo@fastmail.com
+	signingkey = 4AB8262E
 [core]
 	editor = vim
 [gpg]
 	program = gpg2
+[commit]
+	gpgsign = true
 [credential]
 	helper = store
