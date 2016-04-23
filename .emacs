@@ -175,6 +175,13 @@
 
 (use-package nix-mode)
 
+(use-package
+  ponylang-mode
+  :init
+  (add-hook 'ponylang-mode-hook
+            (lambda ()
+              (set-variable 'tab-width 2))))
+
 (use-package magit)
 
 (setq user-email-address "micxjo@fastmail.com"
