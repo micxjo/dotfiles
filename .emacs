@@ -184,6 +184,9 @@
 
 (use-package magit)
 
+;; Follow links to vc-controlled files without asking
+(setq vc-follow-symlinks t)
+
 (setq user-email-address "micxjo@fastmail.com"
       user-full-name "Micxjo Funkcio")
 
