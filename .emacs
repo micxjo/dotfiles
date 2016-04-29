@@ -70,78 +70,63 @@
 
 (use-package
  projectile
- :init
+ :config
  (projectile-global-mode))
 
-(use-package company)
-
 (use-package
- haskell-mode
- :init
- (add-hook 'haskell-mode-hook 'company-mode)
- (add-hook 'haskell-mode-hook
-           (lambda () (setq show-trailing-whitespace t)))
- (customize-set-variable 'haskell-process-auto-import-loaded-modules t)
- (customize-set-variable 'haskell-process-suggest-remove-import-lines t)
- (customize-set-variable 'haskell-process-type 'stack-ghci)
- (eval-after-load 'haskell-mode
-   '(progn
-      (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
-      (define-key haskell-mode-map (kbd "C-c C-l")
-        'haskell-process-load-or-reload)
-      (define-key haskell-mode-map (kbd "s-b")
-        'haskell-mode-jump-to-def))))
+  haskell-mode
+  :mode "\\.hs\\'"
+  :init
+  (add-hook 'haskell-mode-hook
+            (lambda () (setq show-trailing-whitespace t)))
+  :config
+  (customize-set-variable 'haskell-process-auto-import-loaded-modules t)
+  (customize-set-variable 'haskell-process-suggest-remove-import-lines t)
+  (customize-set-variable 'haskell-process-type 'stack-ghci)
+  (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
+  (define-key haskell-mode-map (kbd "C-c C-l")
+    'haskell-process-load-or-reload)
+  (define-key haskell-mode-map (kbd "s-b")
+    'haskell-mode-jump-to-def))
 
 (use-package
   hindent
+  :defer t
   :init
-  (customize-set-variable 'hindent-style "johan-tibell")
-  (add-hook 'haskell-mode-hook #'hindent-mode))
+  (add-hook 'haskell-mode-hook #'hindent-mode)
+  :config
+  (customize-set-variable 'hindent-style "johan-tibell"))
 
 (use-package
   ghc
+  :defer t
   :init
   (autoload 'ghc-init "ghc" nil t)
   (autoload 'ghc-debug "ghc" nil t)
   (add-hook 'haskell-mode-hook (lambda () (ghc-init))))
 
 (use-package
-  company-ghc
+  alchemist
   :init
-  (add-to-list 'company-backends 'company-ghc))
-
-(use-package
- alchemist
- :init
- (add-hook 'alchemist-mode-hook
-           (lambda () (setq show-trailing-whitespace t))))
+  (add-hook 'alchemist-mode-hook
+            (lambda () (setq show-trailing-whitespace t))))
 
 (use-package
   paredit
+  :defer t
   :init
   (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
   (add-hook 'scheme-mode-hook #'enable-paredit-mode))
 
 (use-package
-  geiser
-  :init
-  (add-hook 'geiser-mode-hook
-           (lambda () (setq show-trailing-whitespace t)))
-  (let ((mac-racket-path "/Applications/Racket v6.5/bin/racket"))
-    (if (file-exists-p mac-racket-path)
-        (setq geiser-racket-binary mac-racket-path))))
-
-(use-package
   lua-mode
-  :init
+  :mode "\\.lua\\'"
+  :config
   (setq lua-indent-level 2))
 
-(let ((coq-path "/Applications/CoqIDE_8.4pl5.app/Contents/Resources/bin"))
-  (when (file-exists-p coq-path)
-    (setenv "PATH" (concat coq-path ":" (getenv "PATH")))
-    (add-to-list 'exec-path coq-path)))
-
-(use-package rust-mode)
+(use-package
+  rust-mode
+  :mode "\\.rs\\'")
 
 (let ((racer-cmd-path (expand-file-name "~/.multirust/cargo/bin/racer"))
       (rust-src-path (expand-file-name "~/rust/rust/src")))
@@ -149,33 +134,42 @@
              (file-exists-p rust-src-path))
     (use-package
       racer
+      :defer t
       :init
-      (setq racer-cmd racer-cmd-path)
-      (setq racer-rust-src-path rust-src-path)
       (add-hook 'rust-mode-hook #'racer-mode)
       (add-hook 'racer-mode-hook #'eldoc-mode)
-      (add-hook 'racer-mode-hook #'company-mode))))
+      (setq racer-cmd racer-cmd-path)
+      (setq racer-rust-src-path rust-src-path))))
 
-(use-package yaml-mode)
+(use-package
+  yaml-mode
+  :mode "\\.ya?ml\\'")
 
 (use-package
   go-mode
+  :mode "\\.go\\'"
   :init
   (add-hook 'go-mode-hook
             (lambda () (setq show-trailing-whitespace t))))
 
-(use-package idris-mode)
-
-(use-package nix-mode)
+(use-package
+  nix-mode
+  :mode "\\.nix\\'")
 
 (use-package
   ponylang-mode
+  :mode "\\.pony\\'"
   :init
   (add-hook 'ponylang-mode-hook
             (lambda ()
               (set-variable 'tab-width 2))))
 
-(use-package magit)
+(use-package
+  magit
+  :commands (magit-status
+             magit-blame
+             magit-checkout
+             magit-log-buffer))
 
 ;; Follow links to vc-controlled files without asking
 (setq vc-follow-symlinks t)
