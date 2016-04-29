@@ -141,14 +141,6 @@
     (setenv "PATH" (concat coq-path ":" (getenv "PATH")))
     (add-to-list 'exec-path coq-path)))
 
-(let ((pg-path
-       (expand-file-name "~/coq/ProofGeneral-4.2/generic/proof-site.el")))
-  (when (file-exists-p pg-path)
-    (load-file pg-path)
-    (add-hook 'proof-ready-for-assistant-hook
-              (lambda () (show-paren-mode 0)))
-    (setq coq-prog-args '("-R" "." "SF"))))
-
 (use-package rust-mode)
 
 (let ((racer-cmd-path (expand-file-name "~/.multirust/cargo/bin/racer"))
