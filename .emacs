@@ -39,6 +39,7 @@
 (setq load-prefer-newer)
 
 (show-paren-mode 1)
+(column-number-mode 1)
 (setq-default indent-tabs-mode nil)
 (ido-mode t)
 
@@ -50,6 +51,13 @@
   (when (file-exists-p homebrew-path)
     (setenv "PATH" (concat homebrew-path ":" (getenv "PATH")))
     (add-to-list 'exec-path homebrew-path)))
+
+(use-package
+  fill-column-indicator
+  :commands (fci-mode)
+  :config
+  (setq fci-rule-width 3
+        fci-rule-column 80))
 
 (use-package
  smart-mode-line
