@@ -89,7 +89,7 @@
             (lambda () (setq show-trailing-whitespace t)))
   :config
   (customize-set-variable 'haskell-process-auto-import-loaded-modules t)
-  (customize-set-variable 'haskell-process-suggest-remove-import-lines t)
+  (customize-set-variable 'haskell-process-suggest-remove-import-lines nil)
   (customize-set-variable 'haskell-process-type 'stack-ghci)
   (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
   (define-key haskell-mode-map (kbd "C-c C-l")
