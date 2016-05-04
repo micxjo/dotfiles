@@ -43,6 +43,8 @@
 (setq-default indent-tabs-mode nil)
 (ido-mode t)
 
+(global-set-key (kbd "M-o") 'other-window)
+
 (let ((local-path (expand-file-name "~/.local/bin")))
   (when (file-exists-p local-path)
     (setenv "PATH" (concat local-path ":" (getenv "PATH")))
