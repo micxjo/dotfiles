@@ -134,11 +134,15 @@
   :config
   (setq lua-indent-level 2))
 
+(use-package company
+  :config
+  (setq company-tooltip-align-annotations t))
+
 (use-package
   rust-mode
   :mode "\\.rs\\'")
 
-(let ((racer-cmd-path (expand-file-name "~/.multirust/cargo/bin/racer"))
+(let ((racer-cmd-path (expand-file-name "~/.cargo/bin/racer"))
       (rust-src-path (expand-file-name "~/rust/rust/src")))
   (when (and (file-exists-p racer-cmd-path)
              (file-exists-p rust-src-path))
@@ -146,10 +150,14 @@
       racer
       :defer t
       :init
+      (setenv "CARGO_HOME" (expand-file-name "~/.cargo"))
       (add-hook 'rust-mode-hook #'racer-mode)
       (add-hook 'racer-mode-hook #'eldoc-mode)
+      (add-hook 'racer-mode-hook #'company-mode)
       (setq racer-cmd racer-cmd-path)
-      (setq racer-rust-src-path rust-src-path))))
+      (setq racer-rust-src-path rust-src-path)
+      :config
+      (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common))))
 
 (use-package
   yaml-mode
@@ -180,6 +188,10 @@
              magit-blame
              magit-checkout
              magit-log-buffer))
+
+(use-package
+  toml-mode
+  :mode "\\.toml\\'")
 
 ;; Follow links to vc-controlled files without asking
 (setq vc-follow-symlinks t)
