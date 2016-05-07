@@ -44,6 +44,7 @@
 (ido-mode t)
 
 (global-set-key (kbd "M-o") 'other-window)
+(global-subword-mode)
 
 (let ((local-path (expand-file-name "~/.local/bin")))
   (when (file-exists-p local-path)
