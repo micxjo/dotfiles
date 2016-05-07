@@ -30,7 +30,9 @@
  ;; If there is more than one, they won't work right.
  )
 
-(use-package monokai-theme)
+(use-package monokai-theme
+  :init
+  (setq monokai-use-variable-pitch nil))
 
 (set-face-attribute 'default nil :height 150)
 
