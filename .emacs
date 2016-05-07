@@ -34,8 +34,10 @@
 
 (set-face-attribute 'default nil :height 150)
 
-(setq backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                               "backups"))))
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
+(setq auto-save-file-name-transforms
+      `((".*" ,(concat user-emacs-directory "backups/") t)))
 (setq load-prefer-newer)
 
 (show-paren-mode 1)
