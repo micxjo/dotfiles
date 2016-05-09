@@ -60,6 +60,14 @@
     (add-to-list 'exec-path homebrew-path)))
 
 (use-package
+  helm
+  :config
+  (require 'helm-config)
+  ;; The default prefix of `C-x c` is too similar to `C-x C-c`
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-unset-key (kbd "C-x c")))
+
+(use-package
   fill-column-indicator
   :commands (fci-mode)
   :config
