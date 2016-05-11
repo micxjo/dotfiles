@@ -79,3 +79,9 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
+export RUST_NEW_ERROR_FORMAT=true
