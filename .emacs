@@ -88,7 +88,10 @@
                                (quote (" HI"
                                        " company"
                                        " Paredit"
-                                       " Projectile\.\*"))
+                                       " Projectile\.\*"
+                                       " ARev" ; auto-revert-mode
+                                       " ELDoc"
+                                       " ,"))
                                "\\|")))
 
 (use-package
