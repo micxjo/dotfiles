@@ -111,7 +111,7 @@
   (customize-set-variable 'haskell-process-type 'stack-ghci)
   (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
   (define-key haskell-mode-map (kbd "C-c C-l")
-    'haskell-process-load-or-reload)
+    'haskell-process-load-file)
   (define-key haskell-mode-map (kbd "s-b")
     'haskell-mode-jump-to-def))
 
