@@ -176,6 +176,11 @@
       (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common))))
 
 (use-package
+  cargo
+  :init
+  (add-hook 'rust-mode-hook 'cargo-minor-mode))
+
+(use-package
   yaml-mode
   :mode "\\.ya?ml\\'")
 
