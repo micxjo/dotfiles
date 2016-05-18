@@ -145,6 +145,11 @@
   (add-hook 'scheme-mode-hook #'enable-paredit-mode))
 
 (use-package
+  geiser
+  :config
+  (setq geiser-active-implementations '(racket)))
+
+(use-package
   lua-mode
   :mode "\\.lua\\'"
   :config
