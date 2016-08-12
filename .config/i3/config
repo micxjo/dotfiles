@@ -33,6 +33,9 @@ floating_modifier $mod
 new_window normal 3
 hide_edge_borders both
 
+# start compton on startup
+exec --no-startup-id compton -cCGb --backend glx --vsync opengl
+
 # start a terminal
 bindsym $mod+Return exec xfce4-terminal
 
