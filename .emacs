@@ -34,7 +34,7 @@
   :init
   (setq monokai-use-variable-pitch nil))
 
-(set-face-attribute 'default nil :height 150)
+(set-face-attribute 'default nil :height 110)
 
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
