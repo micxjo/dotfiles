@@ -109,27 +109,13 @@
   (customize-set-variable 'haskell-process-auto-import-loaded-modules t)
   (customize-set-variable 'haskell-process-suggest-remove-import-lines nil)
   (customize-set-variable 'haskell-process-type 'stack-ghci)
-  (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
-  (define-key haskell-mode-map (kbd "C-c C-l")
-    'haskell-process-load-file)
-  (define-key haskell-mode-map (kbd "s-b")
-    'haskell-mode-jump-to-def))
+  (define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 
 (use-package
-  hindent
+  intero
   :defer t
   :init
-  (add-hook 'haskell-mode-hook #'hindent-mode)
-  :config
-  (customize-set-variable 'hindent-style "johan-tibell"))
-
-(use-package
-  ghc
-  :defer t
-  :init
-  (autoload 'ghc-init "ghc" nil t)
-  (autoload 'ghc-debug "ghc" nil t)
-  (add-hook 'haskell-mode-hook (lambda () (ghc-init))))
+  (add-hook 'haskell-mode-hook 'intero-mode))
 
 (use-package
   alchemist
